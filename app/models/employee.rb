@@ -16,7 +16,8 @@ class Employee < ApplicationRecord
 
   mount_uploader :image
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :token_authenticatable
+
 
   validates :joining_date, presence: true
   validate :check_joining_date, on: :update
@@ -25,6 +26,7 @@ class Employee < ApplicationRecord
             format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
   validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' },
                            format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
+
   def recalculate_leave_balance
     leafs.each do |leave|
       next unless leave.updated_at.min == Time.zone.now.min
@@ -86,5 +88,9 @@ class Employee < ApplicationRecord
       errors.add :base,
                  "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year}  "
     end
+  end 
+
+  def is_hr?
+    role&.name.upcase == 'HR'
   end
 end
