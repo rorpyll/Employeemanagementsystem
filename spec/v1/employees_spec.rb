@@ -7,16 +7,9 @@ describe V1::EmployeesController, type: :controller do
   let(:designation) { FactoryBot.create(:designation) }
   let(:employee) { FactoryBot.create(:employee, designation_id: designation.id, role_id: role.id) }
 
-  before do
-    sign_in(employee)
-  end
-
-  context '#index' do
-    it 'get all index' do
-      get :index
-      assert_response(200)
-    end
-  end
+  # before do
+  #   sign_in(employee)
+  # end
 
   describe 'GET# employees#show' do
     before do
@@ -31,14 +24,14 @@ describe V1::EmployeesController, type: :controller do
   describe '#update' do
     context '#with valid parameters' do
       it 'render to update' do
-        patch :update, params: { employee: { name: 'jack' }, id: employee.id }
+        patch :update, params: { employee: { password: 'password' }, id: employee.id }
         assert_response(200)
       end
     end
 
     context 'with valid parameters' do
       it 'render 404 when employee is not exist' do
-        patch :update, params: { employee: { name: 'jack' }, id: '' }
+        patch :update, params: { employee: { password: 'password' }, id: '' }
         assert_response(404)
       end
     end

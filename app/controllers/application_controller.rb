@@ -34,4 +34,8 @@ class ApplicationController < ActionController::Base
   def current_user
     current_employee
   end
+
+  def get_employee
+    Employee.first
+  end
 end

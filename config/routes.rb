@@ -27,12 +27,10 @@ Rails.application.routes.draw do
     resources :employees
   end
 
-  concern :api_emp do
-    resources :employees
-  end
-
-  namespace :v1 do
-    concerns :api_emp
+  namespace :'api' do
+    namespace :'v1' do
+      resources :employees
+    end
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
