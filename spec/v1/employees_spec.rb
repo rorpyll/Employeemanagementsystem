@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe V1::EmployeesController, type: :controller do
+describe Api::V1::EmployeesController, type: :controller do
   let(:role) { FactoryBot.create(:role) }
   let(:designation) { FactoryBot.create(:designation) }
   let(:employee) { FactoryBot.create(:employee, designation_id: designation.id, role_id: role.id) }
@@ -24,12 +24,13 @@ describe V1::EmployeesController, type: :controller do
   describe '#update' do
     context '#with valid parameters' do
       it 'render to update' do
-        patch :update, params: { employee: { password: 'password' }, id: employee.id }
+        patch :update,
+              params: { employee: { password: 'password', password_confirmation: 'password' }, id: employee.id }
         assert_response(200)
       end
     end
 
-    context 'with valid parameters' do
+    context 'with invalid parameters' do
       it 'render 404 when employee is not exist' do
         patch :update, params: { employee: { password: 'password' }, id: '' }
         assert_response(404)
