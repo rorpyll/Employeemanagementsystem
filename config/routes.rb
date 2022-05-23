@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :employees
       resources :holidays
       resources :leafs
+      resources :daily_tasks
     end
   end
 
