@@ -27,10 +27,11 @@ Rails.application.routes.draw do
     resources :employees
   end
 
-  namespace :'api' do
-    namespace :'v1' do
+  namespace :api do
+    namespace :v1 do
       resources :employees
-      resources :holidays 
+      resources :holidays
+      resources :leafs
     end
   end
 

@@ -8,6 +8,6 @@ FactoryBot.define do
     total_days { 1 }
     resion { "MyString" }
     leave_status { nil }
-    employee { nil }
+    employee_id { 1 }
   end
 end
