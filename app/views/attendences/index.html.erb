@@ -15,45 +15,16 @@
             <div class="card-body">
              <h5 class="card-title"></h5>
               <!-- Table with stripped rows -->
-                <%= form_with(url: '/search', local: false, method: 'get') do %>
-                
-                <script>
-                function refreshPage(){
-                    window.location.reload();
-                } 
-                </script>
-            <div>
-              <div class="row mb-3">
-                <div class="col-2">
-                  <%= label_tag :start_date%>
-                  <%= date_field_tag :start_date%>
-                </div>
-                <div class="col-2">
-                  <%= label_tag :end_date%>
-                  <%= date_field_tag :end_date %>
-                </div>
-                <div class="col-2 mt-3">
-                  <%= submit_tag("Search", :class=>"btn btn-primary") %>
-                  <button type="button" onClick="refreshPage()" class="btn btn-primary">Clear</button>
-                </div>
-              </div>
-                   <%= link_to 'Back', root_path, class: "right btn btn-primary" %>
-
-            </div>
-          <% end %>
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">Checkin Time</th>
                     <th scope="col">Checkout Time</th>
                     <th scope="col">Working Hours</th>
-                    <% if current_employee.role.name == "HR" %>
-                    <th scope="col">Employee Name</th>
-                    <% end %>
                   </tr>
                 </thead>
                 <tbody class="search-data">
-                 <%= render 'search' %>
+                 <%= render partial: "attendence", locals: { attendences: @attendences} %>
                 </tbody>
               </table>
              

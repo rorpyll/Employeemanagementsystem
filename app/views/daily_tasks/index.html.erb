@@ -28,44 +28,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @daily_tasks.each do |task| %>
-                  <tr>
-                      <th scope="row"></th>
-                     	<td><%= task.created_at.to_date%></td>
-                      <td ><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=task.id%>"><%= raw task.description.slice(0,15) + "..." %></button></td>  
-                      <td><%= link_to "Show", daily_task_path(task),class: "btn btn-primary"%> 
-                        <% if task.created_at.to_date == Time.now.to_date %>
-                          <%= link_to "edit", edit_daily_task_path(task),class: "btn btn-primary"%>
-                        <% end %>
-                          </td>
-                  </tr>
-
-                  <div class="container">
-                    <div class="modal fade" id="myModal-<%=task.id%>" role="dialog">
-                      <div class="modal-dialog">
-
-                      <!-- Modal content-->
-                        <div class="modal-content">
-                          <div class="modal-header">
-                          <h4 class="modal-title"></h4>
-                          </div>
-                          <div class="p-5">
-                          <%= raw task.description %>
-                          </div>
-                          <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                  <% end %>
+                  <%= render partial: "daily_task", collection: @daily_tasks %>
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
             </div>
           </div>
+        </div>
+        <div class="card m-4">
+          <%= paginate @daily_tasks %>
         </div>
       </div>
     </section>

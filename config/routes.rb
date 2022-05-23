@@ -21,10 +21,17 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :employees
-  resources :employees
+  resources :employees do
+    collection do
+      get :search
+    end
+  end
 
   namespace :hr do
     resources :employees
+    resources :attendences
+    get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'
+    get '/search', to: 'attendences#search'
   end
 
   namespace :api do
@@ -41,7 +48,4 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   patch '/accept/:id', to: 'tickets#decline_ticket', as: 'decline_ticket'
-  # patch '/accept/:id', to: "tickets#decline_ticket",  as: 'accept_ticket'
-
-  get '/search', to: 'attendences#search'
 end
