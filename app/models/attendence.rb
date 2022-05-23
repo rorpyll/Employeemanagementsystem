@@ -23,4 +23,13 @@ class Attendence < ApplicationRecord
         return errors.add :base, "Please select date #{checkin_time.strftime("%d-%m-%Y")} and time greater then #{checkin_time.strftime("%H:%M")} :)" unless checkin_time.strftime("%d") == checkout_time.strftime("%d") && checkout_time.strftime("%H:%M") > checkin_time.strftime("%H:%M")
     end
 
+
+    def self.search(params)
+        if params[:start_date].blank? && params[:end_date].blank?
+            Attendence.all
+        else
+            Attendence.where(created_at: params[:start_date]..params[:end_date], employee_id: params[:id])
+        end
+    end
+ 
 end

@@ -363,10 +363,11 @@
                     <th scope="row"></th>
                     <td><%= employee.name %></td>
                     <td><%= employee.designation.name %></td>
-                     <td><%#= link_to 'Attendence', attendences_path, class: "btn btn-primary"%></td>
-                     <% unless employee.role.name == "HR" %>
-                    <td><%= link_to 'Details', employee, class: "btn btn-primary"%></td>
-                    <% end %>
+                    <td><% unless employee.is_hr? %>
+                      <%= link_to 'Details', employee, class: "btn btn-primary"%>
+                      <% end %>
+                    </td>
+                    <td><%= link_to 'Attendence',  hr_show_attendance_path(employee), class: "btn btn-primary"%></td>
                   </tr>
                   <% end %>
                 </tbody>
