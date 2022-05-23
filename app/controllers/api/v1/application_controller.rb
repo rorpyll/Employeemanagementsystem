@@ -7,14 +7,9 @@ module Api
         Employee.first
       end
 
-      def serializer_data(data,serializer)
-        ActiveModelSerializers::SerializableResource.new(data, serializer: serializer)
+      def serializer_data(data, serializer)
+        ActiveModelSerializers::SerializableResource.new(data, each_serializer: serializer)
       end
-
-
-      # def serializer_data(holiday)
-      #   ActiveModelSerializers::SerializableResource.new(holiday, serializer: Api::V1::HolidaySerializer)
-      # end
     end
   end
 end
