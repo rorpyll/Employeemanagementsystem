@@ -9,7 +9,6 @@ module Api
       def index
         employee = get_employee
         data = Leaf.where(employee_id: employee.id).order('created_at DESC')
-        serializer = Api::V1::LeafSerializer
         render json: {
           data: serializer_data(data, serializer),
           message: ['leaf list '], status: 200, type: 'Success'
@@ -18,7 +17,6 @@ module Api
 
       def create
         data = Leaf.new(leaf_params)
-        serializer = Api::V1::LeafSerializer
         if data.save
           render json: {
             data: serializer_data(data, serializer),
@@ -31,7 +29,6 @@ module Api
 
       def update
         data = Leaf.find(params[:id])
-        serializer = Api::V1::LeafSerializer
         if data.from_date > Time.now
           if data.update(leave_status: 'cancelled')
             render json: {
@@ -47,6 +44,10 @@ module Api
       end
 
       private
+
+      def  serializer
+        Api::V1::LeafSerializer
+      end
 
       def leaf_params
         params.require(:leaf).permit(:leave_type, :from_date, :till_date, :leave_starts, :leave_end, :total_days,
