@@ -1,7 +1,7 @@
  </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-<% if current_employee == @employee || current_employee.role.name == 'HR' %>
+<% if current_employee == @employee || current_employee.role.name == 'HR' || current_employee.role.name == 'Admin' %>
 
     <div class="pagetitle">
       <h1>Profile</h1>

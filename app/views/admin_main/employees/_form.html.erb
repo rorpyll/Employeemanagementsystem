@@ -1,0 +1,104 @@
+<%= form_with(model: @employee) do |form| %>
+    <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+        <% @employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+
+    </div>
+    <% end %>
+
+<div class="field row">
+    <div class="col-lg-2"> <%= form.label :name %> </div>
+    <div class="col-lg-10"> <%= form.text_field :name, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :father_name %> </div>
+    <div class="col-lg-10"> <%= form.text_field :father_name, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :mother_name %> </div>
+    <div class="col-lg-10"> <%= form.text_field :mother_name, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :gender %> </div>
+    <div class="col-lg-10"> <%= form.radio_button :gender, 'Male' %> Male <%= form.radio_button :gender, 'Female' %> Female </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :date_of_birth %> </div>
+    <div class="col-lg-10"> <%= form.date_field :date_of_birth, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :date_of_joining %> </div>
+    <div class="col-lg-10"> <%= form.date_field :joining_date, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :phone_number %> </div>
+    <div class="col-lg-10"> <%= form.text_field :phone_number, class: "form-control" %></div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :email %> </div>
+    <div class="col-lg-10"> <%= form.text_field :email,class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :address %> </div>
+    <div class="col-lg-10"> <%= form.text_area :address, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :bank_name %> </div>
+    <div class="col-lg-10"> <%= form.text_field :bank_name, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :account_number %> </div>
+    <div class="col-lg-10"> <%= form.text_field :account_number, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :pan_card_number %> </div>
+    <div class="col-lg-10"> <%= form.text_field :pan_card_number, class: "form-control" %></div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :aadhar_card_number %> </div>
+    <div class="col-lg-10"> <%= form.text_field :aadhar_card_number, class: "form-control" %></div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :primary_skill %> </div>
+    <div class="col-lg-10">
+       <%= form.text_field :primary_skill, class: "form-control" %>
+    </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :designation %> </div>
+    <div class="col-lg-10"> <%= form.select :designation_id, @designations.map { |t| [t.name, t.id]}, {}, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :role %> </div>
+    <div class="col-lg-10"> <%= form.select :role_id, @roles.map { |t| [t.name, t.id]}, {}, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :image %> </div>
+    <div class="col-lg-10"> <%= form.file_field :image %> </div>
+</div>
+
+<div class="actions"> <%= form.submit 'Save', class: "btn btn-primary right" %> </div> <% end %>
+
+<%#= f.check_box :tag_ids, {multiple: true}, tag.id, '' %>

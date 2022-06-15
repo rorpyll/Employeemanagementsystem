@@ -1,5 +1,5 @@
 class Salary < ApplicationRecord
-  belongs_to :employee
+  belongs_to :employee, dependent: :destroy
   before_save :update_total_working_days
   before_save :total_earnings
   before_save :total_deductions

@@ -1,0 +1,2 @@
+module AdminMain::DailyTasksHelper
+end

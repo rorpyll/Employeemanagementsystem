@@ -13,7 +13,7 @@ class Employee < ApplicationRecord
   belongs_to  :designation, dependent: :destroy
   belongs_to  :role, dependent: :destroy
   has_many :tickets, dependent: :destroy
-  has_many :daily_tasks
+  has_many :daily_tasks, dependent: :destroy
 
   mount_uploader :image
 
@@ -86,5 +86,9 @@ class Employee < ApplicationRecord
 
   def is_hr?
     role&.name.upcase == 'HR'
+  end
+
+  def is_admin?
+    role&.name == 'Admin'
   end
 end

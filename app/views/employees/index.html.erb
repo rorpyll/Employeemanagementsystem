@@ -1,7 +1,7 @@
  </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-    <% unless current_employee.is_hr? %>
+    <% unless current_employee.is_hr? || current_employee.is_admin? %>
 
     <div class="pagetitle">
       <h1>Profile</h1>
@@ -342,9 +342,17 @@
 
           <div class="card">
 
+          <% if current_employee.role.name == "HR" %> 
           <div class="mt-3 p-4">
             <%= link_to 'Add New Employee', new_hr_employee_path , class: "btn btn-primary"  %>
           </div>
+          <% end %>
+
+          <% if current_employee.role.name == "Admin" %> 
+          <div class="mt-3 p-4">
+            <%= link_to 'Add New Employee', new_admin_main_employee_path , class: "btn btn-primary"  %>
+          </div>
+          <% end %>
 
             <div class="card-body mt-3">
           <%= form_with(url: '/employees', method: 'get', local: true) do %>
@@ -372,6 +380,17 @@
                       <%= link_to 'Details', employee, class: "btn btn-primary"%>
                       <% end %>
                     </td>
+
+                    <td><% if current_employee.role.name == "Admin" %>
+                      <%= link_to 'Edit', edit_admin_main_employee_path(employee), class: "btn btn-primary"%>
+                      <% end %>
+                    </td>
+
+                    <td><% if current_employee.role.name == "Admin" %>
+                      <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
+                      <% end %>
+                    </td>
+
                     <td><%= link_to 'Attendence',  hr_show_attendance_path(employee), class: "btn btn-primary"%></td>
                     <td><%= link_to 'Leaves',  hr_employee_leafs_path(employee), class: "btn btn-primary"%></td>
                   </tr>

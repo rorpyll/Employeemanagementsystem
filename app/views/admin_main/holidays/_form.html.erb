@@ -1,16 +1,7 @@
 <h1 style="width: 300px;"></h1>
-<%= form_with(model: @holiday) do |form| %>
-  <% if @holiday.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@holiday.errors.count, "error") %> prohibited this holiday from being saved:</h2>
-      <ul>
-        <% @holiday.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
+<%= form_with model: @holiday, :url => admin_main_holidays_path, :method => "post" do |form| %>
+ 
   <div class="field">
     <%= form.label :holiday_name %>
     <%= form.text_field :holiday_name, class: 'form-control'%>

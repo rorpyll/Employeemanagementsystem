@@ -10,11 +10,11 @@ default: &default
 
 development:
   <<: *default
-  database: ems_development
+  database: ems_development_one
 
 test:
   <<: *default
-  database: ems_test
+  database: ems_test_one
 
 
 production:

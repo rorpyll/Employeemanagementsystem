@@ -1,0 +1,2 @@
+module AdminMain::HolidaysHelper
+end

@@ -84,18 +84,26 @@
           <% end %>
           <% end %>
       </li>
+
+      <li class="nav-item">
+        <% if current_employee.role.name == "Admin" %>
+        <%= link_to profile_path , class: "nav-link collapsed" do %>
+        <i class="bi bi-person"></i>
+            <%= 'Profile' %>
+        <% end %>
+        <% end %>
+      </li>
       
       <li class="nav-item">
           <%= link_to employees_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
-          <% unless current_employee.role.name == "HR" %>
+          <% unless current_employee.role.name == "HR" ||current_employee.role.name == "Admin" %>
               <%= 'Profile' %>
           <% else %>
               <%= 'Employees' %>
           <% end %>
           <% end %>
       </li>
-
       
       <li class="nav-item">
           <%= link_to  performances_path, class: "nav-link collapsed" do %>
@@ -123,18 +131,35 @@
           <% end %>
         
       </li>
+      
       </li class="nav-item">
+          <% if current_employee.role.name == "Employee" || current_employee.role.name == "HR" %>
           <%= link_to  holidays_path , class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Holidays' %>
           <% end %>
+          <% else %> 
+          <%= link_to  admin_main_holidays_path , class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Holidays' %>
+          <% end %>
+          <% end %>
       </li>
+
       <li class="nav-item">
+         <% if current_employee.role.name == "Employee" || current_employee.role.name == "HR" %>
           <%= link_to  daily_tasks_path, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Daily Task' %>
           <% end %>
+          <% else %>
+          <%= link_to  admin_main_daily_tasks_path , class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Daily Task' %>
+          <% end %>
+          <% end %>
       </li>
+
       <li class="nav-item">
           <%= link_to  tickets_path, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
