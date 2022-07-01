@@ -1,0 +1,32 @@
+<tr>
+  <th scope="row"></th>
+  <td><%= daily_task.created_at.to_date%>   
+  </td>
+
+  <td ><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=daily_task.id%>"><%= raw daily_task.description.slice(0,15) + "..." %></button>
+  </td> 
+
+  <td>
+    <% if current_employee.is_admin? %>
+    <%= daily_task.employee.name %>
+    <% end %>
+  </td> 
+  
+</tr>
+<div class="container">
+  <div class="modal fade" id="myModal-<%=daily_task.id%>" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="p-5">
+          <%= raw daily_task.description %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
