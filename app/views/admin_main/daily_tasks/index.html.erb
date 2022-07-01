@@ -7,12 +7,10 @@
           <div class="card-body">
             <div class="pagetitle">
               <div class="card-body mt-3">
-                
                 <%= form_with(url: '/admin_main/daily_tasks', method: 'get') do |form| %>
                 <%= select_tag 'dailytask', options_for_select(@employees.map{|employee| employee.name}), :multiple => true, class: "selectpicker " %>
                 <%= form.submit "Search"%>
                 <% end %>
-
                 <h1>Daily Status</h1>
               </div>
             </a>

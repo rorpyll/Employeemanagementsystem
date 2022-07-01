@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin_main do
-    resources :daily_tasks
+    resources :daily_tasks, only: [:index, :show]
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
