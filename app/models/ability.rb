@@ -6,7 +6,7 @@ class Ability
   def initialize(employee)
     # Define abilities for the passed in user here. For example:
     #   user ||= User.new # guest user (not logged in)
-        if employee.role.name == "HR"
+        if employee.is_hr? || employee.is_admin?
           can :manage, :all
         else
           can :read, :all

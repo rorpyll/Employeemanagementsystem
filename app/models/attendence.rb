@@ -13,7 +13,7 @@ class Attendence < ApplicationRecord
             hour = (data/3600).to_i
             min = ((data-(hour*3600)) / 60).to_i
             sec = (data-(hour*3600) - (min*60)).to_i
-            self.hour = "#{hour} hours #{min} minutes"
+            self.hour = "#{hour}:#{min}"
         end
     end
 

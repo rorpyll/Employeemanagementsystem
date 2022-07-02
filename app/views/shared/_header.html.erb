@@ -110,6 +110,14 @@
           <% end %>
       </li>
       <li class="nav-item">
+          <% if current_employee.is_hr? %>
+          <%= link_to hr_monthly_salaries_path , class: "nav-link collapsed" do %>
+          <i class="bi bi-person"></i>
+              <%= 'Monthly Salary' %>
+          <% end %>
+          <% end %>
+      </li>
+      <li class="nav-item">
           <%= link_to  leafs_path, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Leave' %>

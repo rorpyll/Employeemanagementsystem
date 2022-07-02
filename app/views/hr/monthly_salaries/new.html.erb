@@ -1,0 +1,36 @@
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+<%= form_with(model: @monthly_salary,  url: hr_monthly_salaries_path) do |form| %>
+  <% if @monthly_salary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@monthly_salary.errors.count, "error") %> prohibited this holiday from being saved:</h2>
+      <ul>
+        <% @monthly_salary.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :month %>
+    <%= form.select :month, options_for_select((1..12).map {|m| [Date::MONTHNAMES[m], m]}), class: 'form-control'%>
+  </div>
+
+  <div class="field mt-3 mb-3">
+    <%= form.label :monthly_working_days %>
+    <%= form.number_field :monthly_working_days, class: 'form-control' %>
+  </div>
+
+  <div class="field mt-3 mb-3">
+    <%= form.label :company_level %>
+   <%= form.radio_button :company_level, true %> Enable <%= form.radio_button :company_level, false %> Disable
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+</main>

@@ -20,18 +20,22 @@
   <meta content="" name="keywords">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <!-- Favicons -->
   </head>
 
   <body>
 
-    <% if employee_signed_in? %>
+    <% if current_employee.is_admin? %>
+      <%= render 'shared/admin_header' %>
+    <% else employee_signed_in? %>
       <%= render 'shared/header' %>
-      <%= yield %>
+    <% end if employee_signed_in?%>
       <%= render 'shared/footer' %>
-    <% else %>
-      <%= yield %>
-    <% end %>
+    <%= yield %>
 
   </body>
 </html>

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   namespace :hr do
+    resources :monthly_salaries
     resources :employees do
       resources :leafs, only: :update do
         collection do
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
 
   namespace :admin_main do
     resources :daily_tasks, only: [:index, :show]
+    resources :employees
   end
 
   get '/set_ip', to: 'dashboard#set_ip'

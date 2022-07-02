@@ -5,3 +5,7 @@ role_one:
 role_two: 
   id: 2
   name: Employee
+
+role_three:
+  id: 3
+  name: Admin
