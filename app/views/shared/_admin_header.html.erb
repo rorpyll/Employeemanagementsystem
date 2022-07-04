@@ -62,7 +62,7 @@
     <% if current_employee.is_admin?  %>
     <%= link_to profile_path , class: "nav-link collapsed" do %>
     <i class="bi bi-person"></i>
-        <%= 'Profile' %>
+    Profile
     <% end %>
     <% end %>
   </li>
@@ -72,7 +72,7 @@
       <%= link_to admin_main_employees_path , class: "nav-link collapsed" do  %>
       <i class="bi bi-person"></i>
       <% unless current_employee.is_admin? %>
-          <%= 'Profile' %>
+      Profile
       <% else %>
           <%= 'Employees' %>
       <% end %>
@@ -82,56 +82,56 @@
   <li class="nav-item">
       <%= link_to  performances_path, class: "nav-link collapsed" do %>
       <i class="bi bi-bar-chart"></i>
-      <%= 'Performance' %>
+      Performance
       <% end %>
   </li>
 
   <li class="nav-item">
       <%= link_to  salaries_path, class: "nav-link collapsed" do %>
       <i class="bi bi-menu-button-wide"></i>
-      <%= 'Salary' %>
+      Salary
       <% end %>
   </li>
 
   <li class="nav-item">
     <%= link_to  leafs_path, class: "nav-link collapsed" do %>
     <i class="bi bi-menu-button-wide"></i>
-    <%= 'Leave' %>
+    Leave
     <% end %>
   </li>
 
   <li class="nav-item">
     <%= link_to  attendences_path, method: :get, class: "nav-link collapsed" do %>
     <i class="bi bi-menu-button-wide"></i>
-    <%= 'Attendence' %>
+    Attendence
     <% end %>
   </li>
   
   </li class="nav-item">
     <%= link_to  holidays_path , class: "nav-link collapsed" do %>
     <i class="bi bi-menu-button-wide"></i>
-    <%= 'Holidays' %>
+    Holidays
     <% end %>
   </li>
 
   <li class="nav-item">
       <%= link_to  admin_main_daily_tasks_path, class: "nav-link collapsed" do %>
       <i class="bi bi-menu-button-wide"></i>
-      <%= 'Daily Task' %>
+      Daily Task
       <% end %>
   </li>
 
   <li class="nav-item">
       <%= link_to  tickets_path, class: "nav-link collapsed" do %>
       <i class="bi bi-menu-button-wide"></i>
-      <%= 'Ticket' %>
+      Ticket
       <% end %>
   </li>
 
   <li class="nav-item">
       <%= link_to  destroy_employee_session_path, method: :delete, class: "nav-link collapsed" do %>
       <i class="bi bi-menu-button-wide"></i>
-      <%= 'Logout' %>
+      Logout
       <% end %>
   </li>
 </ul>
