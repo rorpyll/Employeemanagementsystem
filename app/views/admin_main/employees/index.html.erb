@@ -359,9 +359,7 @@
               </tr>
             </thead>
             <tbody> 
-
-            <% @employees.all_except(current_employee).each do |employee| %>
-
+              <% @employees.all_except(current_employee).each do |employee| %>
               <tr>
                 <th scope="row"></th>
                 <td><%= employee.name %></td>
@@ -385,6 +383,7 @@
             <% end %>
             </tbody>
           </table>
+
         </div>
       </div>
     </div>

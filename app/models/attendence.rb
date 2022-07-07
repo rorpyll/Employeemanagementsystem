@@ -16,7 +16,7 @@ class Attendence < ApplicationRecord
 
   private
 
-  def working_hour
+  def working_hour                                                                
     unless checkout_time.nil?
       data = (checkout_time - checkin_time).to_i
       hour = (data / 3600).to_i

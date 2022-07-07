@@ -46,7 +46,10 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
     resources :employees
+<<<<<<< HEAD
     resources :attendences
+=======
+>>>>>>> master
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
