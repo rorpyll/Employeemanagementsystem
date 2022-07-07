@@ -1,7 +1,7 @@
  </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-    <% unless current_employee.role.name == "HR" %>
+    <% unless current_employee.is_hr? %>
 
     <div class="pagetitle">
       <h1>Profile</h1>
@@ -373,6 +373,7 @@
                       <% end %>
                     </td>
                     <td><%= link_to 'Attendence',  hr_show_attendance_path(employee), class: "btn btn-primary"%></td>
+                    <td><%= link_to 'Leaves',  hr_employee_leafs_path(employee), class: "btn btn-primary"%></td>
                   </tr>
                   <% end %>
                 </tbody>

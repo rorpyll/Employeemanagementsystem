@@ -1,0 +1,136 @@
+<header id="header" class="header fixed-top d-flex align-items-center">
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="" class="logo d-flex align-items-center">
+      <h3 class="text-black">EMS</h3>
+      <span class="d-none d-lg-block"></span>
+    </a>
+    <i class="bi bi-list toggle-sidebar-btn"></i>
+  </div><!-- End Logo -->
+
+  <div class="search-bar">
+    <form class="search-form d-flex align-items-center" method="POST" action="#">
+      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+      <button type="submit" title="Search"><i class="fal fa-search"></i></button>
+    </form>
+  </div>
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+      <li class="nav-item d-block d-lg-none">
+        <a class="nav-link nav-icon search-bar-toggle " href="#">
+          <i class="bi bi-search"></i>
+        </a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <i class="bi bi-bell"></i>
+          <span class="badge bg-primary badge-number">4</span>
+        </a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <i class="bi bi-chat-left-text"></i>
+          <span class="badge bg-success badge-number">3</span>
+        </a>
+      </li>
+
+      <li class="nav-item dropdown pe-3">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/employees/" >
+          <% unless current_employee.image.blank? %>
+            <%= image_tag current_employee.image_url, class: "rounded-circle" %>
+          <% end %>
+          <span class="d-none d-md-block"><%= current_employee.email %></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <%= link_to root_path, class: "nav-link collapsed a" do %> 
+        <i class="bi bi-grid"></i>
+        Dashboard
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <% if current_employee.is_admin?  %>
+        <%= link_to profile_path , class: "nav-link collapsed" do %>
+          <i class="bi bi-person"></i>
+          Profile
+        <% end %>
+      <% end %>
+    </li>
+
+
+    <li class="nav-item">
+      <%= link_to admin_main_employees_path , class: "nav-link collapsed" do  %>
+        <i class="bi bi-person"></i>
+        <% unless current_employee.is_admin? %>
+          Profile
+        <% else %>
+          Employees
+        <% end %>
+      <% end %>
+   </li>
+
+    <li class="nav-item">
+      <%= link_to  performances_path, class: "nav-link collapsed" do %>
+        <i class="bi bi-bar-chart"></i>
+        Performance
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to  salaries_path, class: "nav-link collapsed" do %>
+        <i class="bi bi-menu-button-wide"></i>
+        Salary
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to  leafs_path, class: "nav-link collapsed" do %>
+        <i class="bi bi-menu-button-wide"></i>
+        Leave
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to  admin_main_attendences_path, method: :get, class: "nav-link collapsed" do %>
+        <i class="bi bi-menu-button-wide"></i>
+        Attendence
+      <% end %>
+    </li>
+    
+    </li class="nav-item">
+      <%= link_to  admin_main_holidays_path , class: "nav-link collapsed" do %>
+        <i class="bi bi-menu-button-wide"></i>
+        Holidays
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to  daily_tasks_path, class: "nav-link collapsed" do %>
+        <i class="bi bi-menu-button-wide"></i>
+        Daily Task
+      <% end %>
+    </li>
+    
+    <li class="nav-item">
+      <%= link_to  admin_main_tickets_path, class: "nav-link collapsed" do %>
+        <i class="bi bi-menu-button-wide"></i>
+        Ticket
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to  destroy_employee_session_path, method: :delete, class: "nav-link collapsed" do %>
+        <i class="bi bi-menu-button-wide"></i>
+        Logout
+      <% end %>
+    </li>
+  </ul>
+</aside>

@@ -18,8 +18,6 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   resources :performances
   resources :holidays
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
   devise_for :employees
   resources :employees do
     collection do
@@ -28,14 +26,42 @@ Rails.application.routes.draw do
   end
 
   namespace :hr do
-    resources :employees
+    resources :monthly_salaries
+    resources :employees do
+      resources :leafs, only: :update do
+        collection do
+          get :index
+        end
+      end
+    end
+
     resources :attendences
     get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'
     get '/search', to: 'attendences#search'
   end
+
+  namespace :admin_main do
+    resources :holidays
+    resources :tickets, only: %i[index show update] do
+      resources :comments, only: [:create]
+    end
+    resources :employees
+    resources :attendences
+  end
+
   get '/set_ip', to: 'dashboard#set_ip'
   get '/profile', to: 'employees#profile'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  namespace :api do
+    namespace :v1 do
+      mount_devise_token_auth_for 'Employee', at: 'auth'
+      resources :employees, only: %i[show] do
+        collection do
+          put 'update_password'
+        end
+      end
+    end
+  end
 
   patch '/accept/:id', to: 'tickets#decline_ticket', as: 'decline_ticket'
 end

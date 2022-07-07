@@ -1,0 +1,12 @@
+</aside>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1 class="mb-4">Attendence List</h1>
+    </div>
+    <%= link_to 'Back', root_path,  class: "right btn btn-primary" %>  
+    <%= form_with(url: '/admin_main/attendences', method: 'get') do |form| %>
+      <%= text_field_tag :search, params[:search]%>
+      <%= submit_tag("Search")%>
+   <% end %>
+  <%= render partial: "/admin_main/attendences/employee", locals: { employee: @employees} %>
+</main>

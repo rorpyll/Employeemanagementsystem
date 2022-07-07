@@ -1111,3 +1111,15 @@ a:active{
   color: #2196f3;
   font-family: "Poppins", sans-serif;
   }
+.container {
+  width: 100%;
+  height: 10px;
+}
+.skills {
+  text-align: right;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.green {background-color: #04AA6D ;height: 8px;float:left;}
+.blank {background-color:red; height: 8px;float:left;}
+.white {background-color:white; height: 8px;float:left;} 
