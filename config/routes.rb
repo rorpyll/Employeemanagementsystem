@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin_main do
-    resources :daily_tasks, only: [:index, :show]
+    resources :daily_tasks, only: %i[index show]
     resources :employees
   end
 
