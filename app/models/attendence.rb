@@ -25,10 +25,11 @@ class Attendence < ApplicationRecord
 
 
     def self.search(params)
-        if params[:start_date].blank? && params[:end_date].blank?
+        if params[:month].blank? && params[:id].blank?
             Attendence.all
         else
-            Attendence.where(created_at: params[:start_date]..params[:end_date], employee_id: params[:id])
+            #Attendence.where(created_at: params[:start_date]..params[:end_date], employee_id: params[:id])
+            Attendence.where('EXTRACT(MONTH FROM created_at) = ?', params[:month]).where(employee_id: params[:id])
         end
     end
  

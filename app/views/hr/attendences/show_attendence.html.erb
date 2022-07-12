@@ -19,15 +19,24 @@
                 
             <div>
               <div class="row mb-3">
-                <div class="col-2">
-                  <%= label_tag :start_date%>
-                  <%= date_field_tag :start_date%>
+                <!-- <div class="col-2">
+                  <%#= label_tag :start_date%>
+                  <%#= date_field_tag :start_date%>
                 </div>
                 <div class="col-2">
-                  <%= label_tag :end_date%>
-                  <%= date_field_tag :end_date %>
+                  <%#= label_tag :end_date%>
+                  <%#= date_field_tag :end_date %>
+                </div> -->
+                <div class="col-2">
+                  <%= label_tag :month%>
+                  <%= select_tag :month, options_for_select((1..12).map {|m| [Date::MONTHNAMES[m], m]}) %>
                 </div>
-                <%= hidden_field_tag :id, @employee.id %>
+                <div class="col-2">
+                  <%= label_tag :employee_name%>
+                  <% employee= Employee.all %>
+                  <%= select_tag :id, options_for_select(employee.map { |t| ["#{t.name}",t.id]}) %>
+                </div>
+                <%#= hidden_field_tag :id, @employee.id %>
                 <div class="col-2 mt-3">
                   <%= submit_tag("Search", :class=>"btn btn-primary") %>
                   <button type="button" onClick="refreshPage()" class="btn btn-primary">Clear</button>
@@ -38,21 +47,23 @@
             </div>
           <% end %>
                    <%= link_to 'Back', employees_path,  class: "right btn btn-primary" %>
-              <th>Employee Name - <%= @employee&.name&.capitalize()%> </th>
-              <hr>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Checkin Time</th>
-                    <th scope="col">Checkout Time</th>
-                    <th scope="col">Working Hours</th>
-                  </tr>
-                </thead>
-                <tbody class="search-data">
-                 <%= render partial: "attendences/attendence", locals: { attendences: @attendences} %>
-                </tbody>
-              </table>
-             
+                    <hr>
+                    <h5 id="employee_name">Employee Name : <%= Employee.find(params[:id]).name %> </h5>  
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Date</th>
+                          <th scope="col">Checkin Time</th>
+                          <th scope="col"></th>
+                          <th scope="col">Checkout Time</th>
+                          <th scope="col">Working Hours</th>
+                        </tr>
+                      </thead>
+                    <tbody id="search-data">
+                      <%= render partial: "attendences/attendence", locals: { attendences: @attendences} %>
+                    </tbody>
+                    </table>
+
               <!-- End Table with stripped rows -->
             </div>
           </div>

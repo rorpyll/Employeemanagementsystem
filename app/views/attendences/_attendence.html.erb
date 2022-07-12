@@ -1,21 +1,29 @@
 <% array = [] %>
-    <% @attendences.each do |attendence| %>
-        <% unless array.include?(attendence.created_at.strftime('%d-%m-%y')) %>
-            <% array << attendence.created_at.strftime('%d-%m-%y') %>
-            <tr>
-                <td><%= attendence.checkin_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
-                <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
-                <td><%= attendence.hour %></td>
-                <% unless attendence.employee.is_hr? %>
-                <td><%= link_to 'Edit', edit_hr_attendence_path(attendence), class: "btn btn-primary" %></td>
-                <% end %>
-                <td>
-                    <% if current_employee.is_hr? %>
-                    <%= link_to 'View', hr_attendence_path(attendence), class: "btn btn-primary" %>
-                    <% else %>
-                    <%= link_to 'View', attendence_path(attendence), class: "btn btn-primary" %>
-                    <% end %>
-                </td>
-            </tr>
+<% @attendences.each do |attendence| %>
+<% unless array.include?(attendence.created_at.strftime('%d-%m-%y')) %>
+<% array << attendence.created_at.strftime('%d-%m-%y') %>
+<tr>
+    <%at = @attendences.map{|a| a if (a.checkin_time.to_date == attendence.checkin_time.to_date )}.compact%>    
+    <td><%= at.first.checkin_time.to_date %></td>
+    <td><%= at.first.checkin_time&.strftime(" %I:%M:%S %p") %></td>
+    <td style="width:600px">
+    <% persent = attendence_graph(at)%>
+    <div class="container skills">
+    <% time = checkin_checkout_time(at) %>
+    <% for j in 0...persent.length - 1 %>
+    <% unless j%2 == 0 %> 
+    <a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<%= time[j]%>"><div style="width: <%= persent[j] %>%" class="blank"></div></a>
+    <% else %>
+    <a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<%= time[j]%>"><div style="width: <%= persent[j] %>%" class="green"></div></a>
     <% end %>
+    <% end %>
+    </div><br/>
+    </td>
+    <td><%= at.last.checkout_time&.strftime(" %I:%M:%S %p") %></td>
+    <td><%= hours = working_hour(at)%></td>
+    <% unless attendence.employee.is_hr? %>
+                <td><%= link_to 'Edit', edit_hr_attendence_path(at.last.id), class: "btn btn-primary" %></td>
+                <% end %>
+</tr>
+<% end %>
 <% end %>

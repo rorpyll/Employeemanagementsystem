@@ -5,7 +5,7 @@ class AttendencesController < InheritedResources::Base
   # load_and_authorize_resource
   before_action :set_attendance, only: %i[show edit]
   def index
-    @attendences = current_employee.attendences.order(created_at: :desc)
+    @attendences = current_employee.attendences
   end
 
   def show

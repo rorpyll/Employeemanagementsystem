@@ -1,1 +1,2 @@
-$(".search-data").html("<%= j render partial: "attendences/attendence" %>");
+$("#employee_name").html("Employee Name : <%= Employee.find(params[:id]).name %>");
+$("#search-data").html("<%= j render partial: "attendences/attendence", locals: { attendences: @attendences} %>");
