@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :performances, only: [:index]
+      resources :daily_tasks, only: %i[index show create update]
     end
   end
 
