@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       resources :holidays, only: %i[index]
       resources :tickets, only: %i[index create]
       resources :attendences, only: %i[index show create update]
+      resources :leafs, only: %i[index create update]
     end
   end
 
