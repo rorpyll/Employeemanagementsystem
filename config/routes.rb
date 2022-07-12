@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :daily_tasks, only: %i[index show create update]
       resources :holidays, only: %i[index]
       resources :tickets, only: %i[index create]
+      resources :attendences, only: %i[index show create update]
     end
   end
 
