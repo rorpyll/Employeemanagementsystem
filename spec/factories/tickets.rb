@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :ticket do
-    status { "Accept" }
+    status { nil }
     description { "MyText" }
-    ticket_type { "employee" }
-    employee_id { 2 }
+    ticket_type { nil }
+    employee { 1 }
   end
 end
