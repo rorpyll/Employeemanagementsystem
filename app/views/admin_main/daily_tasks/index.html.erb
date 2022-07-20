@@ -1,0 +1,37 @@
+</aside>
+<main id="main" class="main">
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="pagetitle">
+              <div class="card-body mt-3">
+                <%= form_with(url: '/admin_main/daily_tasks', method: 'get') do |form| %>
+                <%= select_tag 'dailytask', options_for_select(@employees.map{|employee| employee.name}), :multiple => true, class: "selectpicker " %>
+                <%= form.submit "Search"%>
+                <% end %>
+                <h1>Daily Status</h1>
+              </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Daily status</th>
+                  <th scope="col">Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: "daily_task", collection: @daily_task %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card m-4">
+        <%= paginate @daily_tasks %>
+      </div>
+    </div>
+  </section>
+</main>
