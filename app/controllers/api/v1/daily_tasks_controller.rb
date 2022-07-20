@@ -3,7 +3,7 @@
 module Api
   module V1
     class DailyTasksController < ApplicationController
-      # before_action :authenticate_employee!
+      before_action :authenticate_employee!
       before_action :set_daily_task, only: %i[show update]
       skip_before_action :verify_authenticity_token
 
