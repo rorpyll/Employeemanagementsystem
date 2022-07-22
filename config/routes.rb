@@ -33,6 +33,7 @@ Rails.application.routes.draw do
           get :index
         end
       end
+      patch '/update_leave', to: 'employees#update_leave_balance', as: 'update_leave_balance'
     end
 
     resources :attendences

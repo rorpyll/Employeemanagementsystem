@@ -26,6 +26,11 @@ class Hr::EmployeesController < ApplicationController
     end
 
 
+    def update_leave_balance
+      @employee = Employee.find(params[:employee_id])
+      @employee.increment!(:leave_count)
+    end
+
     private
 
     def employee_params

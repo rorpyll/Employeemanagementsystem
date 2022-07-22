@@ -15,7 +15,10 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body p-5">
-                        <!-- Table with stripped rows --> <%= link_to 'Back', employees_path,  class: "right btn btn-primary" %> <th>Employee Name - <%= @employee&.name&.capitalize()%> </th>
+                        <%= link_to 'Back', employees_path,  class: "right btn btn-primary" %> 
+
+                        <%= button_to 'add leave',  hr_employee_update_leave_balance_path(id: @employee),method: :patch, class: "btn btn-primary mb-3  check-in-check-out"  %>
+
                         <table class="table table-striped mt-3" ><thead>
                             <tr>
                                 <th scope="col">#</th>
