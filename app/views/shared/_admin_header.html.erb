@@ -74,7 +74,7 @@
           Employees
         <% end %>
       <% end %>
-    </li>
+   </li>
 
     <li class="nav-item">
       <%= link_to  performances_path, class: "nav-link collapsed" do %>
@@ -87,10 +87,7 @@
       <%= link_to  salaries_path, class: "nav-link collapsed" do %>
         <i class="bi bi-menu-button-wide"></i>
         Salary
-      <% end %>
-    </li>
 
-    <li class="nav-item">
       <%= link_to  admin_main_monthly_salaries_path, class: "nav-link collapsed" do %>
         <i class="bi bi-menu-button-wide"></i>
         Monthly Salary
@@ -105,12 +102,12 @@
     </li>
 
     <li class="nav-item">
-      <%= link_to  attendences_path, method: :get, class: "nav-link collapsed" do %>
+      <%= link_to  admin_main_attendences_path, method: :get, class: "nav-link collapsed" do %>
         <i class="bi bi-menu-button-wide"></i>
         Attendence
       <% end %>
     </li>
-  
+
     </li class="nav-item">
       <%= link_to  admin_main_holidays_path , class: "nav-link collapsed" do %>
         <i class="bi bi-menu-button-wide"></i>
@@ -124,7 +121,7 @@
         Daily Task
       <% end %>
     </li>
-  
+
     <li class="nav-item">
       <%= link_to  admin_main_tickets_path, class: "nav-link collapsed" do %>
         <i class="bi bi-menu-button-wide"></i>

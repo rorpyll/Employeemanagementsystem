@@ -358,7 +358,7 @@
                 <th scope="col">Designation</th>
               </tr>
             </thead>
-            <tbody> 
+            <tbody>
               <% @employees.all_except(current_employee).each do |employee| %>
               <tr>
                 <th scope="row"></th>
@@ -368,11 +368,15 @@
                   <%= link_to 'Details',  admin_main_employee_path(employee), class: "btn btn-primary"%>
                   <% end %>
                 </td>
-
                 <td>
                   <% if current_employee.is_admin? %>
-                  <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%> 
+                  <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
                       <% end %>
+                </td>
+                <td>
+                  <% if current_employee.is_admin? %>
+                    <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary"%> 
+                  <% end %>
                 </td>
               </tr>
               <% end %>
@@ -386,3 +390,10 @@
 </section>
 <% end %>
 </main><!-- End #main -->
+
+
+
+
+
+
+
