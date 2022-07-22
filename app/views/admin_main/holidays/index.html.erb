@@ -33,7 +33,7 @@
                   <th scope="row"><%= i %></th>
                   <td><%= @holidays[i].holiday_name.capitalize() %></td>
                   <td><%= @holidays[i].holiday_type.capitalize() %></td>
-                  <td><%= @holidays[i].holiday_date %></td>
+                  <td><%= @holidays[i].holiday_date.strftime("%d %h %Y") %></td>
                   <td>
                     <%= link_to 'Edit Holiday', edit_admin_main_holiday_path(@holidays[i]), class: 'btn btn-primary'%>
                     <%= link_to 'Destroy',  admin_main_holiday_path(@holidays[i]),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
